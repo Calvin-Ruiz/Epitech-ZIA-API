@@ -27,14 +27,15 @@ enum RoutingBehavior {
     ROUTING_BEHAVIOR_PASSTHROUGH_BIT = 0x01,
     ROUTING_BEHAVIOR_CONDITIONNAL_BIT = 0x02,
     ROUTING_BEHAVIOR_MULTI_OUTPUT_BIT = 0x04,
-    ROUTING_BEHAVIOR_ASYNC_BIT_EXT = 0x08,
-    ROUTING_BEHAVIOR_CONDITIONNAL_STAGE_BIT_EXT = 0x10,
-    ROUTING_BEHAVIOR_DYNAMIC_OUTPUT_BIT_EXT = 0x20,
-    ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT = 0x40,
+    ROUTING_BEHAVIOR_SWITCH_BIT_EXT = 0x08,
+    ROUTING_BEHAVIOR_ASYNC_BIT_EXT = 0x10,
+    ROUTING_BEHAVIOR_CONDITIONNAL_STAGE_BIT_EXT = 0x20,
+    ROUTING_BEHAVIOR_DYNAMIC_OUTPUT_BIT_EXT = 0x40,
+    ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT = 0x80,
 };
 
 struct PipelineModule {
-    std::vector<int> requestFilter; // Requests which should be caught. Empty = any request
+    std::vector<int> requestFilter; // Requests which should be caught. Empty = nothing with requestID, {-1} = any request
     PipelineStage srcStage;
     PipelineStage dstStage;
     RoutingBehavior routing;
@@ -90,7 +91,7 @@ ROUTING_BEHAVIOR_MULTI_OUTPUT_BIT
     If it is combined with ROUTING_BEHAVIOR_PASSTHROUGH_BIT, the number of output generated per input is constant
     If it is combined with ROUTING_BEHAVIOR_CONDITIONNAL_BIT, the number of output can be null and vary
 ROUTING_BEHAVIOR_SWITCH_BIT_EXT
-    The generated output will have a request type attributed. Only PipelineStage with
+    The generated output will have a request type attributed. This allow filtering requests for the next stages.
 ROUTING_BEHAVIOR_ASYNC_BIT_EXT
     An output can be generated at any time without matching input.
     If combined with ROUTING_BEHAVIOR_PASSTHROUGH_BIT, the non-async output generated must directly reply to the input

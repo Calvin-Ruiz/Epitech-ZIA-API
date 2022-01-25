@@ -19,9 +19,7 @@ public:
     virtual void preinit(ICore *core, const std::string &configPath, const std::string &userPath) = 0;
     // Initialize. You can fetch IModuleMgr and perform links here.
     virtual void init();
-    virtual IModule *createModule(IPipeline *pipeline, PipelineModule pipelineModule) = 0;
-    // Return the modules to be created for each connection, and their dependencies with the general flow
-    virtual std::vector<PipelineStage> querryPipelineStages() = 0;
+    virtual IModule *createModule(IPipeline *pipeline, PipelineModule pipelineModule, void *userData) = 0;
 };
 
 #endif /* IMODULEMGR_HPP_ */
