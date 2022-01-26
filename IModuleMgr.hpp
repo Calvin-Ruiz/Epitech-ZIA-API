@@ -15,7 +15,8 @@ class ICore;
 enum ModuleCapabilities {
     MODULE_EXTENSION_PIPELINE_RESET = 0x01,
     MODULE_EXTENSION_SHARED_USE = 0x02,
-    MODULE_EXTENSION_DEBUG_ENGINE = 0x04
+    MODULE_EXTENSION_DEBUG_ENGINE = 0x04,
+    MODULE_EXTENSION_CONCURRENT_CREATE = 0x08,
 };
 
 class IModuleMgr {
@@ -44,6 +45,8 @@ MODULE_EXTENSION_SHARED_USE
     This mean any IModule can be used to manage request from any client
 MODULE_EXTENSION_DEBUG_ENGINE
     The ModuleMgr will display debug informations for debug purpose
+MODULE_EXTENSION_CONCURRENT_CREATE
+    IModuleMgr::createModule can be concurrently called
 */
 
 #endif /* IMODULEMGR_HPP_ */
