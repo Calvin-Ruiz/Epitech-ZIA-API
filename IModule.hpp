@@ -40,6 +40,10 @@ public:
     // Receive an async reply
     virtual std::vector<char> asyncReply() {return {};}
     virtual void updateAsync() {}
+
+    // ========== PIPELINE_RESET_EXT ========== //
+    // Reinitialize the Module to reuse it for another client
+    virtual void reset() {}
 };
 
 #endif /* IMODULE_HPP_ */

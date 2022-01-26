@@ -10,15 +10,22 @@
 
 #include "PipelineStage.hpp"
 
+enum CoreExtension {
+    IMPLICIT_ROUTING_EXT = 0x01
+};
+
 // Core is a global class
 class ICore {
 public:
-    // Use this in the IModuleMgr::preinit function
+    // Return the request ID for this request string
+    // If this request string isn't registered, assign a new unique request ID for this request string and return it
+    // Calling this function outside of IModuleMgr::preinit will result in undefined behavior
     virtual int getRequestID(const std::string &request) = 0;
     // Return -1 if this request doesn't exist
     virtual int getRequestIDIfExist(const std::string &request) const = 0;
     // Return request name, requestID MUST be a valid requestID (otherwise, it will result in undefined behavior)
     virtual const std::string &getRequestName(int requestID) const = 0;
+    // Calling this function outside of IModuleMgr::init will result in undefined behavior
     virtual void addPipelineModule(IModuleMgr *moduleMgr, PipelineModule pipelineModule, void *userData = nullptr) = 0;
     // Return the supported flags. Every non-_EXT flags must be supported.
     // Use of any unsupported flag will result in undefined behavior. Any module using _EXT flags should have a fallback strategy.
@@ -35,6 +42,20 @@ public:
     }
     // Call this function to inform a module require missing features
     virtual void moduleUnavailable(IModuleMgr *moduleMgr, const std::string &moduleName, const std::string &reason = "\0") = 0;
+
+    // ========== CORE EXTENSION FEATURES ========== //
+    // A single extension or a combination of several extensions
+    virtual bool isExtensionAvailable(CoreExtension extension) const {return false;}
+    // Enable one or several extensions. Mustn't be used with unsupported extensions
+    virtual void enableExtension(CoreExtension extensions) {}
 };
+
+/* Core extensions :
+IMPLICIT_ROUTING_EXT
+    When enabled, perform an implicit routing at PIPELINE_STAGE_ROUTING_BIT
+    Implicit routing MUST include the following operations :
+        Collect messages received to form complete requests (Single lines which end with \r\n)
+        Send back request one after the other with a requestID attached, whose value is the return value of ICore::getRequestIDIfExist() of the first word of the request.
+*/
 
 #endif /* ICORE_HPP_ */
