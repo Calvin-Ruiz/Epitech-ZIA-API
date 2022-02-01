@@ -12,6 +12,7 @@
 
 enum CoreExtension {
     IMPLICIT_ROUTING_EXT = 0x01
+    DYNAMIC_MODULE_EXT = 0x02
 };
 
 // Core is a global class
@@ -25,6 +26,8 @@ public:
     virtual int getRequestIDIfExist(const std::string &request) const = 0;
     // Return request name, requestID MUST be a valid requestID (otherwise, it will result in undefined behavior)
     virtual const std::string &getRequestName(int requestID) const = 0;
+    // Add the description of a Module to create for each IPipeline
+    // userData must be carried as argument when calling IModuleMgr::createModule to create the specified module for each IPipeline
     // Calling this function outside of IModuleMgr::init will result in undefined behavior
     virtual void addPipelineModule(IModuleMgr *moduleMgr, PipelineModule pipelineModule, void *userData = nullptr) = 0;
     // Return the supported flags. Every non-_EXT flags must be supported.
@@ -56,6 +59,8 @@ IMPLICIT_ROUTING_EXT
     Implicit routing MUST include the following operations :
         Collect messages received to form complete requests (Single lines which end with \r\n)
         Send back request one after the other with a requestID attached, whose value is the return value of ICore::getRequestIDIfExist() of the first word of the request.
+DYNAMIC_MODULE_EXT
+    When enabled, allow to dynamically add or remove a Module of a pipeline
 */
 
 #endif /* ICORE_HPP_ */
