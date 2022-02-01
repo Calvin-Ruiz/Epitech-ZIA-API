@@ -10,7 +10,7 @@
 
 #include "PipelineModule.hpp"
 
-// Pipeline is a class dedicated to one connection.
+// Pipeline is a class dedicated to a connection with one client
 class IPipeline {
 public:
     // Only needed if ROUTING_BEHAVIOR_DYNAMIC_OUTPUT_BIT_EXT is supported
