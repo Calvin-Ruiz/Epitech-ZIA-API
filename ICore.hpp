@@ -44,7 +44,9 @@ public:
         return (getRoutingBehaviorCapabilities() & routing) == routing;
     }
     // Call this function to inform a module require missing features
-    virtual void moduleUnavailable(IModuleMgr *moduleMgr, const std::string &moduleName, const std::string &reason = "\0") = 0;
+    // If fatal is true, any call to IModuleMgr will result in undefined behavior
+    // If fatal is false, further use of IModuleMgr is valid, but the IModuleMgr features will be limited
+    virtual void moduleUnavailable(IModuleMgr *moduleMgr, const std::string &moduleName, const std::string &reason = "\0", bool fatal = true) = 0;
 
     // ========== CORE EXTENSION FEATURES ========== //
     // A single extension or a combination of several extensions
