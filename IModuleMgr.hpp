@@ -27,7 +27,7 @@ public:
     // Pre-initialization. This allow to prepair links. Do not call Core::addPipelineModule here
     virtual void preinit(ICore *core, const std::string &configPath, const std::string &userPath) = 0;
     // Initialize. You can fetch IModuleMgr and perform links here.
-    virtual void init();
+    virtual void init() = 0;
     virtual IModule *createModule(IPipeline *pipeline, PipelineModule pipelineModule, void *userData) = 0;
     // Return true if the configuration files are not up to date
     virtual bool isOutdated() = 0;
