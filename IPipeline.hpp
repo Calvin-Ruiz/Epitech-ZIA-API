@@ -21,7 +21,7 @@ public:
     virtual void addModule(ModuleMgr *moduleMgr, Module *module, PipelineModule pipelineModule) {}
     // Request the IPipeline to remove a Module from his processing line
     // Only needed if DYNAMIC_MODULE_EXT is supported and enabled
-    virtual void removeModule(ModuleMgr *moduleMgr, IModule *module);
+    virtual void removeModule(ModuleMgr *moduleMgr, IModule *module) {}
 };
 
 #endif /* IPIPELINE_HPP_ */
