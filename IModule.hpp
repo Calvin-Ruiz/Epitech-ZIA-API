@@ -15,6 +15,7 @@ public:
     // If ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT is supported and enabled and don't invoke a reply, it must return false and datas mustn't be modified
     // If ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT is supported and enabled and invoke at least one reply, it must return true and datas can be modified
     // Return true if datas have been modified, false otherwise
+    // If datas have not been modified by any module, it should be implicitly released by the server
     virtual bool receive(Request *datas) = 0;
     // Tell how many reply are ensured to be filled
     virtual int haveReply() {return 0;}
