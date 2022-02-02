@@ -11,8 +11,8 @@
 #include "PipelineStage.hpp"
 
 enum CoreExtension {
-    IMPLICIT_ROUTING_EXT = 0x01
-    DYNAMIC_MODULE_EXT = 0x02
+    IMPLICIT_ROUTING_EXT = 0x01,
+    DYNAMIC_MODULE_EXT = 0x02,
 };
 
 // Core is a global class
