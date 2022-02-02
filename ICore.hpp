@@ -24,6 +24,8 @@ public:
     virtual int getRequestID(const std::string &request) = 0;
     // Return -1 if this request doesn't exist
     virtual int getRequestIDIfExist(const std::string &request) const = 0;
+    // Return the ID of a section name, should be called in IModuleMgr::preinit ir IModuleMgr::init
+    virtual int getSectionID(const VString &section) = 0;
     // Return request name, requestID MUST be a valid requestID (otherwise, it will result in undefined behavior)
     virtual const std::string &getRequestName(int requestID) const = 0;
     // Add the description of a Module to create for each IPipeline
@@ -61,6 +63,7 @@ IMPLICIT_ROUTING_EXT
     Implicit routing MUST include the following operations :
         Collect messages received to form complete requests (Single lines which end with \r\n)
         Send back request one after the other with a requestID attached, whose value is the return value of ICore::getRequestIDIfExist() of the first word of the request.
+        Fill the metadata and body sections reading from the raw data
 DYNAMIC_MODULE_EXT
     When enabled, allow to dynamically add or remove a Module of a pipeline
 */
