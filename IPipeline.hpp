@@ -22,6 +22,17 @@ public:
     // Request the IPipeline to remove a Module from his processing line
     // Only needed if DYNAMIC_MODULE_EXT is supported and enabled
     virtual void removeModule(ModuleMgr *moduleMgr, IModule *module) {}
+    // Acquire a request buffer.
+    // Can return a previously-released Request
+    virtual Request *acquireRequestBuffer() {
+        return new Request;
+    }
+    // Release a request buffer.
+    // Once released, the request buffer can either be cleared and returned by any further acquireRequestBuffer or be deleted immediately
+    virtual void releaseRequestBuffer(Request *request) {
+        if (--request->useCount == 0)
+            delete request;
+    }
 };
 
 #endif /* IPIPELINE_HPP_ */
