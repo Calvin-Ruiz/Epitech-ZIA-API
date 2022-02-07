@@ -8,6 +8,8 @@
 #ifndef IMODULE_HPP_
 #define IMODULE_HPP_
 
+#include "Request.hpp"
+
 class IModule {
 public:
     // Receive datas from sync message flow
@@ -29,7 +31,7 @@ public:
     // ========== ROUTING_BEHAVIOR_CONDITIONNAL_STAGE_BIT_EXT ========== //
     // Return the PipelineStage of the reply, and swap datas with the reply datas
     // Note that returned PipelineStage MUST be one of the dstStage of this module
-    virtual PipelineStage conditionnalReply(Request *datas) {return 0;} // Yes, this is invalid, don't care while you don't support this flag
+    virtual PipelineStage conditionnalReply(Request *datas) {return (PipelineStage) 0;} // Yes, this is invalid, don't care while you don't support this flag
 
     // ========== ROUTING_BEHAVIOR_ASYNC_BIT_EXT ========== //
     // Receive datas from async message flow

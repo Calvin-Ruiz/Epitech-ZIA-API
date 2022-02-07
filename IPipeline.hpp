@@ -9,6 +9,9 @@
 #define IPIPELINE_HPP_
 
 #include "PipelineModule.hpp"
+#include "Request.hpp"
+class IModuleMgr;
+class IModule;
 
 // Pipeline is a class dedicated to a connection with one client
 class IPipeline {
@@ -18,10 +21,10 @@ public:
     // Request the IPipeline to add a Module to his processing line
     // A single IPipeline MUSTN'T have 2 or more IModule with the same address if MODULE_EXTENSION_SHARED_USE is not set
     // Only needed if DYNAMIC_MODULE_EXT is supported and enabled
-    virtual void addModule(ModuleMgr *moduleMgr, Module *module, PipelineModule pipelineModule) {}
+    virtual void addModule(IModuleMgr *moduleMgr, IModule *module, const PipelineModule &pipelineModule) {}
     // Request the IPipeline to remove a Module from his processing line
     // Only needed if DYNAMIC_MODULE_EXT is supported and enabled
-    virtual void removeModule(ModuleMgr *moduleMgr, IModule *module) {}
+    virtual void removeModule(IModuleMgr *moduleMgr, IModule *module) {}
     // Acquire a request buffer.
     // Can return a previously-released Request
     virtual Request *acquireRequestBuffer() {

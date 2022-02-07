@@ -8,6 +8,7 @@
 #ifndef PIPELINE_MODULE_HPP_
 #define PIPELINE_MODULE_HPP_
 
+#include <vector>
 #define STAGE_COUNT 9
 
 // This define the stage of execution

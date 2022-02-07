@@ -8,7 +8,11 @@
 #ifndef ICORE_HPP_
 #define ICORE_HPP_
 
-#include "PipelineStage.hpp"
+#include "PipelineModule.hpp"
+#include <string>
+#include "VString.hpp"
+class IModuleMgr;
+class IModule;
 
 enum CoreExtension {
     IMPLICIT_ROUTING_EXT = 0x01,
@@ -31,14 +35,14 @@ public:
     // Add the description of a Module to create for each IPipeline
     // userData must be carried as argument when calling IModuleMgr::createModule to create the specified module for each IPipeline
     // Calling this function outside of IModuleMgr::init will result in undefined behavior
-    virtual void addPipelineModule(IModuleMgr *moduleMgr, PipelineModule pipelineModule, void *userData = nullptr) = 0;
+    virtual void addPipelineModule(IModuleMgr *moduleMgr, const PipelineModule &pipelineModule, void *userData = nullptr) = 0;
     // Return the supported flags. Every non-_EXT flags must be supported.
     // Use of any unsupported flag will result in undefined behavior. Any module using _EXT flags should have a fallback strategy.
     // The 2 mandatory modules MUST have a fallback strategy if every _EXT flag aren't available
     // Other modules which can't work without MUST tell so calling
     // Override this function to add every flags you support
     virtual RoutingBehavior getRoutingBehaviorCapabilities() {
-        return ROUTING_BEHAVIOR_PASSTHROUGH_BIT | ROUTING_BEHAVIOR_CONDITIONNAL_BIT | ROUTING_BEHAVIOR_MULTI_OUTPUT_BIT;
+        return static_cast<RoutingBehavior>(ROUTING_BEHAVIOR_PASSTHROUGH_BIT | ROUTING_BEHAVIOR_CONDITIONNAL_BIT | ROUTING_BEHAVIOR_MULTI_OUTPUT_BIT);
     }
     // Tell if this combination of flag is supported
     // Any combination of non-_EXT flags MUST be supported

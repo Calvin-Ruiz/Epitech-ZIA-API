@@ -8,9 +8,11 @@
 #ifndef IMODULEMGR_HPP_
 #define IMODULEMGR_HPP_
 
-class IModule;
 class ICore;
+class IPipeline;
 #include "PipelineModule.hpp"
+#include "IModule.hpp"
+#include <string>
 
 enum ModuleCapabilities {
     MODULE_EXTENSION_PIPELINE_RESET = 0x01,
@@ -28,7 +30,7 @@ public:
     virtual void preinit(ICore *core, const std::string &configPath, const std::string &userPath) = 0;
     // Initialize. You can fetch IModuleMgr and perform links here.
     virtual void init() = 0;
-    virtual IModule *createModule(IPipeline *pipeline, PipelineModule pipelineModule, void *userData) = 0;
+    virtual IModule *createModule(IPipeline *pipeline, const PipelineModule &pipelineModule, void *userData) = 0;
     // Return true if the configuration files are not up to date
     virtual bool isOutdated() = 0;
     // Reload the configuration files for future IPipeline
