@@ -8,6 +8,8 @@
 #ifndef PIPELINE_MODULE_HPP_
 #define PIPELINE_MODULE_HPP_
 
+#define STAGE_COUNT 9
+
 // This define the stage of execution
 enum PipelineStage {
     PIPELINE_STAGE_TOP_OF_PIPE_BIT = 0x00000001,
