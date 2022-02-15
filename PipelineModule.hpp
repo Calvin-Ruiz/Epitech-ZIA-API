@@ -10,6 +10,7 @@
 
 #include <vector>
 #define STAGE_COUNT 9
+#define HAS_FLAGS(flags_available, flags_expected) ((flags_available & flags_expected) == flags_expected)
 
 // This define the stage of execution
 enum PipelineStage {

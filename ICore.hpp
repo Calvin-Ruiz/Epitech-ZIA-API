@@ -47,7 +47,7 @@ public:
     // Tell if this combination of flag is supported
     // Any combination of non-_EXT flags MUST be supported
     virtual bool isRoutingCombinationValid(RoutingBehavior routing) {
-        return (getRoutingBehaviorCapabilities() & routing) == routing;
+        return HAS_FLAGS(getRoutingBehaviorCapabilities(), routing);
     }
     // Call this function to inform a module require missing features
     // If fatal is true, any call to IModuleMgr will result in undefined behavior
