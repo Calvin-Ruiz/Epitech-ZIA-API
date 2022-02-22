@@ -87,6 +87,7 @@ PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT
 /* Routing behaviors :
 ROUTING_BEHAVIOR_PASSIVE_BIT
     No output is generated in any case
+    If every modules of a srcStage either only have ROUTING_BEHAVIOR_PASSIVE_BIT or include ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT, messages can fallback to the next stage
 ROUTING_BEHAVIOR_PASSTHROUGH_BIT
     One input will result in one output
 ROUTING_BEHAVIOR_CONDITIONNAL_BIT
