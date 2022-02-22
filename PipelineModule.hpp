@@ -54,7 +54,7 @@ struct PipelineModule {
 // - ICore have the ROUTING_BEHAVIOR_CONDITIONNAL_STAGE_BIT_EXT capability
 // dstStage mustn't define any stage if routing is ROUTING_BEHAVIOR_PASSIVE_BIT or ROUTING_BEHAVIOR_PASSIVE_BIT | ROUTING_BEHAVIOR_DYNAMIC_PUSH_BIT_EXT
 // In every other cases, dstStage must define one and only one stage
-// dstStage mustn't be an earlier stage than srcStage
+// dstStage must be a later stage than srcStage if ICore doesn't support ROUTING_BEHAVIOR_DYNAMIC_PUSH_BIT_EXT
 
 /* Pipeline stages :
 PIPELINE_STAGE_TOP_OF_PIPE_BIT
