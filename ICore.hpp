@@ -17,6 +17,7 @@ class IModule;
 enum CoreExtension {
     IMPLICIT_ROUTING_EXT = 0x01,
     DYNAMIC_MODULE_EXT = 0x02,
+    FLEXIBLE_REQUEST_ID_EXT = 0x04,
 };
 
 // Core is a global class
@@ -70,6 +71,12 @@ IMPLICIT_ROUTING_EXT
         Fill the metadata and body sections reading from the raw data
 DYNAMIC_MODULE_EXT
     When enabled, allow to dynamically add or remove a Module of a pipeline
+FLEXIBLE_REQUEST_ID_EXT
+    When enabled, it is allowed to have requestID of -1 in the requestFilter of PipelineModule to design any request ID
+    When disabled, the following apply :
+        -1 mustn't be present in any requestFilter of any PipelineModule
+        requestFilter can only be non-empty for srcStage after PIPELINE_STAGE_ROUTING_BIT and before PIPELINE_STAGE_OUTPUT_CONTROL_BIT, both stages excluded
+        The requestID is discarded when entering the PIPELINE_STAGE_OUTPUT_CONTROL_BIT
 */
 
 #endif /* ICORE_HPP_ */
