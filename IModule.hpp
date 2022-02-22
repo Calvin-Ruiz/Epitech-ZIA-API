@@ -8,7 +8,8 @@
 #ifndef IMODULE_HPP_
 #define IMODULE_HPP_
 
-#include "Request.hpp"
+class Request;
+#include "PipelineModule.hpp"
 
 class IModule {
 public:
@@ -35,11 +36,11 @@ public:
 
     // ========== ROUTING_BEHAVIOR_ASYNC_BIT_EXT ========== //
     // Receive datas from async message flow
-    virtual void receiveAsync(Request datas) {(void) datas;}
+    virtual void receiveAsync(Request *datas) {(void) datas;}
     // Tell how many async reply are ensured to be filled
     virtual int haveAsyncReply() {return 0;}
     // Receive an async reply
-    virtual Request asyncReply() {return {};}
+    virtual Request *asyncReply() {return {};}
     virtual void updateAsync() {}
 
     // ========== PIPELINE_RESET_EXT ========== //

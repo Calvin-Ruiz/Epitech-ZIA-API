@@ -9,6 +9,7 @@
 #define REQUEST_HPP_
 
 #include "VString.hpp"
+#include <vector>
 
 struct Request {
     std::vector<char> data; // Raw message content
