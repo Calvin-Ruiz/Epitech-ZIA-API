@@ -28,7 +28,7 @@ public:
     // Acquire a request buffer.
     // Can return a previously-released Request
     virtual Request *acquireRequestBuffer() {
-        return new Request;
+        return new Request{{}, {}, 1};
     }
     // Release a request buffer.
     // Once released, the request buffer can either be cleared and returned by any further acquireRequestBuffer or be deleted immediately
