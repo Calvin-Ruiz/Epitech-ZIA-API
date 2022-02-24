@@ -12,6 +12,21 @@
 #define STAGE_COUNT 9
 #define HAS_FLAGS(flags_available, flags_expected) ((flags_available & flags_expected) == flags_expected)
 
+// Note : Use a #define FLAG yourflag, a #define FLAG_USABLE, then the DISP_FEATURE, to end with #undef FLAG and #undef FLAG_ALLOWED
+#ifdef __linux__
+#define DISP_FEATURE(feature) std::cout << #feature << " :\t" << (\
+    (FLAG & feature) ? \
+    ((FLAG_USABLE & feature) ? "\e[92;1menabled\e[0m" : "\e[91;1minvalid\e[0m") : \
+    ((FLAG_USABLE & feature) ? "\e[93mdisabled\e[0m" : "\e[33munavailable\e[0m") \
+    ) << '\n'
+#else
+#define DISP_FEATURE(feature) std::cout << #feature << " :\t" << (\
+    (FLAG & feature) ? \
+    ((FLAG_USABLE & feature) ? "enabled" : "invalid") : \
+    ((FLAG_USABLE & feature) ? "disabled" : "unavailable") \
+    ) << '\n'
+#endif
+
 // This define the stage of execution
 enum PipelineStage {
     PIPELINE_STAGE_TOP_OF_PIPE_BIT = 0x00000001,
