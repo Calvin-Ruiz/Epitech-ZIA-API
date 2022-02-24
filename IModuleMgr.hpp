@@ -14,6 +14,12 @@ class IPipeline;
 #include "IModule.hpp"
 #include <string>
 
+#ifdef __linux__
+#define VISIBLE
+#else
+#define VISIBLE __declspec(dllexport)
+#endif
+
 enum ModuleCapabilities {
     MODULE_EXTENSION_PIPELINE_RESET = 0x01,
     MODULE_EXTENSION_SHARED_USE = 0x02,
