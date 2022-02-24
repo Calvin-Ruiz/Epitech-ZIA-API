@@ -31,6 +31,8 @@ public:
     virtual int getRequestIDIfExist(const std::string &request) const = 0;
     // Return the ID of a section name, should be called in IModuleMgr::preinit ir IModuleMgr::init
     virtual int getSectionID(const VString &section) = 0;
+    // Return the ID of a section name, or -1 if there is no section with this name
+    virtual int getSectionIDIfExist(const VString &section) const = 0;
     // Return request name, requestID MUST be a valid requestID (otherwise, it will result in undefined behavior)
     virtual const std::string &getRequestName(int requestID) const = 0;
     // Add the description of a Module to create for each IPipeline
