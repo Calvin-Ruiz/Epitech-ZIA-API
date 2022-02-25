@@ -36,7 +36,7 @@ public:
     // Return section name, sectionID MUST be a valid sectionID (otherwise, it will result in undefined behavior)
     virtual const VString &getSectionName(int requestID) const = 0;
     // Return request name, requestID MUST be a valid requestID (otherwise, it will result in undefined behavior)
-    virtual const std::string &getRequestName(int requestID) const = 0;
+    virtual const std::string &getRequestName(int sectionID) const = 0;
     // Add the description of a Module to create for each IPipeline
     // userData must be carried as argument when calling IModuleMgr::createModule to create the specified module for each IPipeline
     // Calling this function outside of IModuleMgr::init will result in undefined behavior
