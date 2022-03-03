@@ -13,7 +13,7 @@
 struct VString {
     char *str = nullptr;
     unsigned int size = 0; // Size of the string
-    unsigned int id; // ID of the VString, can be used for fast identification
+    unsigned int id; // Might be externally used for fast identification
 
     bool operator<(const VString &i2) const {
         if (size < i2.size)
@@ -24,6 +24,12 @@ struct VString {
         if (size != i2.size)
             return false;
         return (std::memcmp(str, i2.str, size) == 0);
+    }
+    bool operator<(int i2) const {
+        return id < i2;
+    }
+    bool operator==(int i2) const {
+        return id == i2;
     }
 };
 
