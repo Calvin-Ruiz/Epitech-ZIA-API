@@ -21,7 +21,7 @@ struct Request {
     unsigned int useCount = -1;
     // The minimum between the number of parallel use of the Request by modules which doesn't have ROUTING_BEHAVIOR_CONDITIONNAL_ROUTING_BIT_EXT set and 1
     // Request content can be modified if useCount is 1
-    std::vector<std::pair<std::vector<char>, int>> cache;
+    std::vector<std::pair<std::vector<char>, unsigned int>> cache;
     // For caching entries data.
     // The packet should be reconstructed at PIPELINE_STAGE_OUTPUT_CONTROL_BIT, thus cache MUST be empty after this stage
 };
