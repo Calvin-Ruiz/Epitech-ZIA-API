@@ -25,10 +25,10 @@ struct VString {
             return false;
         return (std::memcmp(str, i2.str, size) == 0);
     }
-    bool operator<(int i2) const {
+    bool operator<(unsigned int i2) const {
         return id < i2;
     }
-    bool operator==(int i2) const {
+    bool operator==(unsigned int i2) const {
         return id == i2;
     }
 };
