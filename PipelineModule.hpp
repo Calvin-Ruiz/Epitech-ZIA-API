@@ -29,6 +29,7 @@
 
 // This define the stage of execution
 enum PipelineStage {
+    PIPELINE_STAGE_NONE = 0, // No stage, only valid when no stage can be designed
     PIPELINE_STAGE_TOP_OF_PIPE_BIT = 0x00000001,
     PIPELINE_STAGE_DECODING_BIT = 0x00000002,
     PIPELINE_STAGE_ROUTING_BIT = 0x00000004,
