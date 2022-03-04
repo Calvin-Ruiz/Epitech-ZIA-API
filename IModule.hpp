@@ -32,6 +32,8 @@ public:
     // ========== ROUTING_BEHAVIOR_CONDITIONNAL_STAGE_BIT_EXT ========== //
     // Return the PipelineStage of the reply, and swap datas with the reply datas
     // Note that returned PipelineStage MUST be one of the dstStage of this module
+    // If combined with ROUTING_BEHAVIOR_CONDITIONNAL_BIT, and this combination is supported by this server :
+    // - 0 can be returned to mean no destination
     virtual PipelineStage conditionnalReply(Request *datas) {return (PipelineStage) 0;} // Yes, this is invalid, don't care while you don't support this flag
 
     // ========== ROUTING_BEHAVIOR_ASYNC_BIT_EXT ========== //
